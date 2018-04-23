@@ -12,7 +12,7 @@ using namespace std;
 template <typename T>
 void merge(const vector<vector<T>>& v, vector<T>& s)
 {
-    size_t length = accumulate(v.begin(), v.end(), 0, [](size_t l, vector<T> w) {
+    size_t length = accumulate(v.begin(), v.end(), 0, [](size_t l, const vector<T>& w) {
         return l + w.size();
     });
     using range = pair<typename vector<T>::const_iterator, typename vector<T>::const_iterator>;
@@ -40,7 +40,7 @@ void merge(const vector<vector<T>>& v, vector<T>& s)
 
 int main()
 {
-    
+
     vector<vector<int>> A = {{1, 2, 4}, {}, {2, 3, 5}, {3, 4, 6, 8}};
     vector<int> B;
 
