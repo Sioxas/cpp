@@ -17,13 +17,11 @@
     "editor.snippetSuggestions": "top", // snippets代码优先显示补全
 
     "clang.cflags": [ // 控制c语言静态检测的参数
-        "--target=x86_64-w64-mingw",
         "-std=c11",
         "-Wall"
     ],
     "clang.cxxflags": [ // 控制c++静态检测时的参数
-        "--target=x86_64-w64-mingw",
-        "-std=c++17",
+        "-std=c++11",
         "-Wall"
     ],
     "clang.completion.enable": true,
