@@ -1,6 +1,7 @@
 *.exe
 *.dSYM
 *.out
+*.o
 .DS_Store
 .idea
 .temp
