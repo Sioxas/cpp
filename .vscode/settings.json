@@ -65,6 +65,8 @@
         "unordered_set": "cpp",
         "algorithm": "cpp",
         "memory": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "unordered_map": "cpp",
+        "ios": "cpp"
     } // 效果稍好，但太卡，故关掉
 }
