@@ -45,6 +45,32 @@ vector<int> recursiveInorderTraversal(TreeNode *root) {
     return res;
 }
 
+// Morris Traversal
+vector<int> morrisTraversal(TreeNode *root) { 
+    TreeNode *cur = root;
+    vector<int> res;
+    while (cur != NULL) {
+        if(cur->left!=NULL){
+            auto t = cur->left;
+            while(t->right!=NULL&&t->right!=cur)
+                t = t->right;
+            if(t->right == NULL){
+                t->right = cur;
+                cur = cur->left;
+            }else{
+                res.push_back(cur->val);
+                t->right = NULL;
+                cur = cur->right;
+            }
+
+        } else {
+            res.push_back(cur->val);
+            cur = cur->right;
+        }
+    }
+    return res;
+}
+
 // Iterative
 vector<int> inorderTraversal(TreeNode *root) {
     /* 
@@ -103,7 +129,7 @@ int main(int argc, char const *argv[])
     auto g = new TreeNode(6);
     c->left = f;
     c->right = g;
-    vector<int> res = inorderTraversal(a);
+    vector<int> res = morrisTraversal(a);
     for(int i:res){
         cout << i << ' ';
     }
