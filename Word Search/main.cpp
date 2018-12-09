@@ -31,13 +31,26 @@ using namespace std;
 bool find(vector<vector<char>> &board, string word,int x,int y,int pos){
     int m = board.size(), n = board[0].size();
     if(word[pos]==board[x][y]){
+        const char t = board[x][y];
+        board[x][y] = 0;
         if(pos==word.length()-1){
             return true;
         }
-        
-    }else{
-        return false;
+        if(x>0&& board[x-1][y] &&find(board,word,x-1,y,pos+1)){
+            return true;
+        }
+        if(x<m-1&& board[x+1][y] &&find(board,word,x+1,y,pos+1)){
+            return true;
+        }
+        if(y>0&& board[x][y-1] &&find(board,word,x,y-1,pos+1)){
+            return true;
+        }
+        if(y<n-1&& board[x][y+1] &&find(board,word,x,y+1,pos+1)){
+            return true;
+        }
+        board[x][y] = t;
     }
+    return false;
 }
 
 bool exist(vector<vector<char>> &board, string word) {
@@ -56,5 +69,26 @@ bool exist(vector<vector<char>> &board, string word) {
 int main(int argc, char const *argv[])
 {
     /* code */
+    vector<vector<char>> board =
+    {
+        {'A','B','C','E'},
+        {'S','F','C','S'},
+        {'A','D','E','E'}
+    };
+    string a = "ABCCED";
+    string b = "SEE";
+    string c = "ABCB";
+    string d = "CBA";
+    auto t = board;
+    cout<< exist(t,a)<<endl;
+    t = board;
+    cout<< exist(t,b)<<endl;
+    t = board;
+    cout<< exist(t,c)<<endl;
+    t = board;
+    cout<< exist(t,d)<<endl;
     return 0;
 }
+/**
+ * Runtime: 16 ms, faster than 89.02% of C++ online submissions for Word Search.
+ */

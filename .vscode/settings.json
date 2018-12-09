@@ -13,7 +13,7 @@
     "C_Cpp.clang_format_sortIncludes": true, // 格式化时调整include的顺序（按字母排序）
     "C_Cpp.intelliSenseEngine": "Default", // 可以为Default或Tag Parser，后者较老，功能较简单。具体差别参考cpptools插件文档
     "C_Cpp.errorSquiggles": "Disabled", // 因为有clang的lint，所以关掉
-    "editor.formatOnType": true, // 输入时就进行格式化，默认触发字符较少，分号可以触发
+    "editor.formatOnType": false, // 输入时就进行格式化，默认触发字符较少，分号可以触发
     "editor.snippetSuggestions": "top", // snippets代码优先显示补全
 
     "clang.cflags": [ // 控制c语言静态检测的参数
