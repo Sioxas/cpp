@@ -11,20 +11,24 @@
  */
 #include <iostream>
 #include <vector>
-#include <map>
 #include <cstdlib>
 
 using namespace std;
 
 int majorityElement(vector<int>& nums) {
-    map<int,int> count;
-    double n=nums.size()/2.0;
-    for(auto v : nums){
-        count[v]++;
-        if(count[v]>=n)
-            return v;
+    int count = 0;
+    int current = 0;
+    for(int i = 0;i<nums.size();i++){
+        if(count == 0){
+            current = nums[i];
+        }
+        if(current == nums[i]){
+            count ++;
+        }else{
+            count --;
+        }
     }
-    return 0;
+    return current;
 }
 
 
