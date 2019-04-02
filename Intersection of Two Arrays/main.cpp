@@ -11,29 +11,20 @@
  */
 #include <iostream>
 #include <vector>
-#include <cstdlib>
+#include <unordered_set>
 
 using namespace std;
 
 vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
-    vector<int> t;
-    bool found=false;
-    for(vector<int>::iterator i=nums1.begin();i!=nums1.end();i++){
-        for(vector<int>::iterator j=nums2.begin();j!=nums2.end();j++){
-            found=false;
-            if(*i==*j){
-                for(vector<int>::iterator k=t.begin();k!=t.end();k++){
-                    if(*i==*k){
-                        found=true;
-                        break;
-                    }
-                }
-                if(!found)
-                    t.push_back(*i);
-            }
+    vector<int> result;
+    unordered_set<int> s(nums1.begin(),nums1.end());
+    for(int x:nums2){
+        if(s.count(x)){
+            result.push_back(x);
+            s.erase(x);
         }
     }
-    return t;
+    return result;
 }
 
 int main() {
