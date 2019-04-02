@@ -19,7 +19,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
+#include <unordered_map>
 
 using namespace std;
 
@@ -33,12 +33,31 @@ vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
     return result;
 }
 
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int,int> m;
+        vector<int> result;
+        for(int x:nums1){
+            m[x]++;
+        }
+        for(int x:nums2){
+            if(m.count(x) && m[x]>0){
+                result.push_back(x);
+                m[x]--;
+            }
+        }
+        return result;
+    }
+};
+
 int main() {
 //    vector<int> first = {5,10,15,20,25};
     vector<int> first = {1,2,2,1};
 //    vector<int> second = {50,40,30,20,10};
     vector<int> second = {2,2};
-    vector<int> result = intersect(first,second);
+    Solution solution;
+    vector<int> result = solution.intersect(first,second);
     cout << "The intersection has " << (result.size()) << " elements:\n";
     for(auto val : result)
         cout<<val<<" ";
