@@ -51,7 +51,7 @@
 #include<stack>
 using namespace std;
 
-class Solution {
+class Solution1 {
 private:
     vector<uint8_t> priority;
     stack<int> operandStack;
@@ -76,7 +76,7 @@ private:
         return result;
     }
 public:
-    Solution(){
+    Solution1(){
         priority = vector<uint8_t>(256,0);
         priority['+'] = 1;
         priority['-'] = 1;
@@ -119,11 +119,58 @@ public:
     }
 };
 
+class Solution {
+private:
+    bool isDigit(char c){
+        return c>='0' && c<='9';
+    }
+public:
+    int calculate(string s) {
+        s+='+';
+        stack<long> nums;
+        int i = 0;
+        long num = 0;
+        char sign = '+';
+        while(i<s.size()){
+            char c = s[i];
+            if(isDigit(c)){
+                num = num * 10 + c - '0';
+            }
+            if(!isDigit(c)&&c!=' '){
+                if(sign=='+'){
+                    nums.push(num);
+                }
+                if(sign=='-'){
+                    nums.push(-num);
+                }
+                if(sign=='*'){
+                    long t = nums.top();
+                    nums.pop();
+                    nums.push(t*num);
+                }
+                if(sign=='/'){
+                    long t = nums.top();
+                    nums.pop();
+                    nums.push(t/num);
+                }
+                num = 0;
+                sign = c;
+            }
+            i++;
+        }
+        long result = 0;
+        while(!nums.empty()){
+            result += nums.top();
+            nums.pop();
+        }
+        return result;
+    }
+};
+
 int main(){
     Solution solution;
-    string s = " 3/2 ";
+    string s = " 3+5 / 2 ";
     auto result = solution.calculate(s);
     cout<<result<<endl;
     return 0;
 }
-
