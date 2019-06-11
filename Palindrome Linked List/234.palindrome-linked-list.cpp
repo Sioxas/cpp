@@ -19,6 +19,7 @@ struct ListNode {
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
+        if(head==NULL||head->next==NULL)return true;
         ListNode* perv = NULL,*fast=head,*slow=head;
         while(fast!=NULL&&fast->next!=NULL){
             perv = slow;
